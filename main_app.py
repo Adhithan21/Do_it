@@ -35,16 +35,17 @@ def generate_qr_code(url, box_size=5):
     return buffer
 
 # Check for query parameters
-query_params = st.query_params  # Use the new method for query parameters
+query_params = st.experimental_get_query_params()  # Use the new method for query parameters
 quote_from_url = query_params.get("quote", None)
 
-if quote_from_url and quote_from_url[0]:  # Ensure the parameter exists and is not empty
+# If the quote is passed via the URL, display it
+if quote_from_url and len(quote_from_url) > 0:  # Ensure the parameter exists and is not empty
     st.title("Positive Thought")
-    st.write(f"### Your Quote: {st.session_state.quote}")
+    st.write(f"### Your Quote: {quote_from_url[0]}")  # Display the quote from the URL
 else:
     # Main page with QR code generation
     if "quote" not in st.session_state:
-        st.session_state.quote = generate_random_quote()
+        st.session_state.quote = generate_random_quote()  # Generate random quote if not set
 
     # Construct the URL with the quote as a query parameter
     base_url = "https://mppsn93w3hvjxkjjlfthyt.streamlit.app/"  # Replace with your actual deployed URL
@@ -55,5 +56,5 @@ else:
 
     st.title("Spread Positivity with a QR Code")
     st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
-
-    
+    st.write(f"### Today's Positive Thought: {st.session_state.quote}")
+    st.write("Scan the QR code to share positivity with others!")
