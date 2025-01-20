@@ -11,7 +11,6 @@ quotes = [
     "The way to get started is to quit talking and begin doing. – Walt Disney",
     "Opportunities don't happen, you create them. – Chris Grosser",
     "Believe in yourself and all that you are. – Christian D. Larson",
-    # Add more quotes as needed...
 ]
 
 # Function to generate a random quote
@@ -19,14 +18,14 @@ def generate_random_quote():
     return random.choice(quotes)
 
 # Function to generate a QR code for a URL
-def generate_qr_code(url, box_size=5):  # Reduced box size for smaller QR codes
+def generate_qr_code(url, box_size=5):  
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=box_size,  # Control size of the QR code
+        box_size=box_size,
         border=4,
     )
-    qr.add_data(url)  # Adding the URL directly into the QR code
+    qr.add_data(url)
     qr.make(fit=True)
 
     img = qr.make_image(fill="black", back_color="white")
@@ -39,11 +38,11 @@ def generate_qr_code(url, box_size=5):  # Reduced box size for smaller QR codes
 if "quote" not in st.session_state:
     st.session_state.quote = generate_random_quote()
 
-# Replace with your deployed Streamlit app URL (this must be the deployed URL)
-base_url = "https://nph3usl7qdt525rmecwbrv.streamlit.app/"  # Replace with your actual deployed URL
+# Replace with your deployed Streamlit app URL
+base_url = "https://your-username-your-app-name.streamlit.app"  # Update with your deployed URL
 
 # Construct the URL with the quote as a query parameter
-quote_url = f"{base_url}?{urlencode({'quote': st.session_state.quote})}"
+quote_url = f"{base_url}/quote_page?{urlencode({'quote': st.session_state.quote})}"
 
 # Generate the QR code for this URL
 qr_code_image = generate_qr_code(quote_url, box_size=5)
@@ -55,3 +54,5 @@ st.write("### Scan the QR code below to reveal a positive thought!")
 # Display the QR code image
 st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
 
+# Display the quote on the page (this will change with each scan)
+st.write(f"Quote generated: {st.session_state.quote}")
