@@ -34,8 +34,8 @@ def generate_qr_code(url, box_size=5):
     buffer.seek(0)
     return buffer
 
-# Check for query parameters
-query_params = st.experimental_get_query_params()  # Use the new method for query parameters
+# Check for query parameters using the updated method
+query_params = st.query_params  # Use st.query_params to get query parameters
 quote_from_url = query_params.get("quote", None)
 
 # If the quote is passed via the URL, display it
@@ -56,4 +56,5 @@ else:
 
     st.title("Spread Positivity with a QR Code")
     st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
-
+    st.write(f"### Today's Positive Thought: {st.session_state.quote}")
+    st.write("Scan the QR code to share positivity with others!")
