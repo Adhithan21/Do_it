@@ -41,7 +41,7 @@ quote_from_url = query_params.get("quote", None)
 # If the quote is passed via the URL, display it
 if quote_from_url and len(quote_from_url) > 0:  # Ensure the parameter exists and is not empty
     st.title("Positive Thought")
-    st.write(f"### Your Quote: {quote_from_url[0]}")  # Display the quote from the URL
+    st.write(f"### Your Quote: {quote_from_url")  # Display the quote from the URL
 else:
     # Main page with QR code generation
     if "quote" not in st.session_state:
