@@ -39,7 +39,7 @@ def generate_qr_code(url, box_size=5):  # Reduced box size for smaller QR codes
 if "quote" not in st.session_state:
     st.session_state.quote = generate_random_quote()
 
-# Replace with your deployed Streamlit app URL
+# Replace with your deployed Streamlit app URL (this must be the deployed URL)
 base_url = "https://jdphi9htaatxcuurgc5rhm.streamlit.app/"  # Replace with your actual deployed URL
 
 # Construct the URL with the quote as a query parameter
@@ -55,5 +55,3 @@ st.write("### Scan the QR code below to reveal a positive thought!")
 # Display the QR code image
 st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
 
-# Display the quote on the page (this will change with each scan)
-st.write(f"Quote generated: {st.session_state.quote}")
