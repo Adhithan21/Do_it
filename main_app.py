@@ -2,7 +2,7 @@ import streamlit as st
 import random
 import qrcode
 from io import BytesIO
-from urllib.parse import urlencode, unquote
+from urllib.parse import urlencode
 
 # List of motivational and positive quotes
 quotes = [
@@ -35,14 +35,13 @@ def generate_qr_code(url, box_size=5):
     return buffer
 
 # Check for query parameters
-query_params = st.query_params  # Use the new method for query parameters
+query_params = st.experimental_get_query_params()  # Use the new method for query parameters
 quote_from_url = query_params.get("quote", None)
 
-# If the quote is passed via the URL, decode and display it
+# If the quote is passed via the URL, display it
 if quote_from_url and len(quote_from_url) > 0:  # Ensure the parameter exists and is not empty
-    decoded_quote = unquote(quote_from_url[0])  # Decode the quote in case it contains special characters
     st.title("Positive Thought")
-    st.write(f"### Your Quote: {decoded_quote}")  # Display the decoded quote from the URL
+    st.write(f"### Your Quote: {quote_from_url[0]}")  # Display the quote from the URL
 else:
     # Main page with QR code generation
     if "quote" not in st.session_state:
