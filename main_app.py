@@ -34,11 +34,10 @@ def generate_qr_code(url, box_size=5):
     buffer.seek(0)
     return buffer
 
-# Get query parameters
-query_params = st.query_params  # Use modern query parameter fetching
-quote_from_url = query_params.get("quote", None)
+# Check if the URL has a quote parameter
+quote_from_url = st.experimental_get_query_params().get("quote", None)
 
-if quote_from_url and len(quote_from_url) > 0:  # Ensure valid quote parameter
+if quote_from_url and len(quote_from_url) > 0:
     # Display the page with the quote passed via the URL
     st.title("Positive Thought")
     st.write(f"### {quote_from_url[0]}")  # Display the quote
