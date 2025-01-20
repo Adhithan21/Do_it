@@ -34,19 +34,20 @@ def generate_qr_code(url, box_size=5):
     buffer.seek(0)
     return buffer
 
-# Check if the URL has a quote parameter
-quote_from_url = st.experimental_get_query_params().get("quote", None)
+# Check for URL query parameters (when the user scans the QR code)
+query_params = st.experimental_get_query_params()
+quote_from_url = query_params.get("quote", None)
 
 if quote_from_url and len(quote_from_url) > 0:
-    # Display the page with the quote passed via the URL
+    # This is the redirect page, display the quote passed via the URL
     st.title("Positive Thought")
     st.write(f"### {quote_from_url[0]}")  # Display the quote
 else:
-    # Main page logic
+    # Main page logic (displaying random quote and generating QR code)
     if "quote" not in st.session_state:
         st.session_state.quote = generate_random_quote()  # Generate a random quote
 
-    # Construct the URL with the quote as a query parameter
+    # Construct the URL with the quote as a query parameter (for the redirect page)
     base_url = "https://your-deployed-url.streamlit.app/"  # Replace with your actual deployed URL
     quote_url = f"{base_url}?{urlencode({'quote': st.session_state.quote})}"
 
