@@ -39,7 +39,7 @@ if "quote" not in st.session_state:
     st.session_state.quote = generate_random_quote()
 
 # Replace with your deployed Streamlit app URL
-base_url = "https://nph3usl7qdt525rmecwbrv.streamlit.app/"  # Update with your deployed URL
+base_url = "https://nph3usl7qdt525rmecwbrv.streamlit.app"  # Update with your deployed URL
 
 # Construct the URL with the quote as a query parameter
 quote_url = f"{base_url}/quote_page?{urlencode({'quote': st.session_state.quote})}"
@@ -47,12 +47,8 @@ quote_url = f"{base_url}/quote_page?{urlencode({'quote': st.session_state.quote}
 # Generate the QR code for this URL
 qr_code_image = generate_qr_code(quote_url, box_size=5)
 
-# Display instructions and QR code
-st.title("Spread Positivity with a QR Code")
-st.write("### Scan the QR code below to reveal a positive thought!")
-
 # Display the QR code image
 st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
 
-# Display the quote on the page (this will change with each scan)
-st.write(f"Quote generated: {st.session_state.quote}")
+# Instruction to the user
+st.write("### Scan the QR code to see a positive quote!")
