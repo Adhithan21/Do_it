@@ -41,7 +41,6 @@ quote_from_url = query_params.get("quote", None)
 if quote_from_url:
     # Quote display page
     st.title("Positive Thought")
-    st.write(f"Generated Quote: {st.session_state.quote}")
     st.write(f"### {quote_from_url[0]}")
 else:
     # Main page with QR code generation
@@ -58,3 +57,6 @@ else:
     # Display the QR code image
     st.title("Spread Positivity with a QR Code")
     st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
+
+    # Display the randomly generated quote on the main page
+    st.write("### Scan the QR code to see a positive thought!")
