@@ -34,28 +34,27 @@ def generate_qr_code(url, box_size=5):
     buffer.seek(0)
     return buffer
 
-# Check for URL query parameters (when the user scans the QR code)
-query_params = st.experimental_get_query_params()
+# Check for query parameters
+query_params = st.query_params  # Use the new method for query parameters
 quote_from_url = query_params.get("quote", None)
 
-if quote_from_url and len(quote_from_url) > 0:
-    # This is the redirect page, display the quote passed via the URL
+if quote_from_url and quote_from_url[0]:  # Ensure the parameter exists and is not empty
     st.title("Positive Thought")
-    st.write(f"### {quote_from_url[0]}")  # Display the quote
+    st.write(f"### {quote_from_url[0]}")
 else:
-    # Main page logic (displaying random quote and generating QR code)
+    # Main page with QR code generation
     if "quote" not in st.session_state:
-        st.session_state.quote = generate_random_quote()  # Generate a random quote
+        st.session_state.quote = generate_random_quote()
 
-    # Construct the URL with the quote as a query parameter (for the redirect page)
-    base_url = "https://your-deployed-url.streamlit.app/"  # Replace with your actual deployed URL
+    # Construct the URL with the quote as a query parameter
+    base_url = "https://mppsn93w3hvjxkjjlfthyt.streamlit.app/"  # Replace with your actual deployed URL
     quote_url = f"{base_url}?{urlencode({'quote': st.session_state.quote})}"
 
     # Generate the QR code for this URL
     qr_code_image = generate_qr_code(quote_url, box_size=5)
 
-    # Display the QR code and random quote on the main page
     st.title("Spread Positivity with a QR Code")
-    st.image(qr_code_image, caption="Scan me for a positive thought!", width=300)
-    st.write(f"### Today's Positive Thought: {st.session_state.quote}")
-    st.write("Scan the QR code to share positivity with others!")
+    st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
+
+    st.write(f"### Your Quote: {st.session_state.quote}")
+    st.write("### Scan the QR code to share this positivity!")
