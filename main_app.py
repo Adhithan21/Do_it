@@ -60,4 +60,4 @@ else:
 
     # Display the randomly generated quote on the main page
     st.write("### Scan the QR code to see a positive thought!")
-    st.write(f"Generated Quote: {st.session_state.quote}")
+  
