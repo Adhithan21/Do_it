@@ -35,11 +35,10 @@ def generate_qr_code(url, box_size=5):
     return buffer
 
 # Check for query parameters
-query_params = st.query_params
+query_params = st.experimental_get_query_params()  # Use experimental_get_query_params
 quote_from_url = query_params.get("quote", None)
 
-if quote_from_url:
-    # Quote display page
+if quote_from_url and quote_from_url[0]:  # Ensure the parameter exists and is not empty
     st.title("Positive Thought")
     st.write(f"### {quote_from_url[0]}")
 else:
@@ -54,9 +53,8 @@ else:
     # Generate the QR code for this URL
     qr_code_image = generate_qr_code(quote_url, box_size=5)
 
-    # Display the QR code image
     st.title("Spread Positivity with a QR Code")
     st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
 
-    # Display the randomly generated quote on the main page
-    st.write("### Scan the QR code to see a positive thought!")
+    st.write(f"### Your Quote: {st.session_state.quote}")
+    st.write("### Scan the QR code to share this positivity!")
