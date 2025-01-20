@@ -40,7 +40,7 @@ if "quote" not in st.session_state:
     st.session_state.quote = generate_random_quote()
 
 # Replace with your deployed Streamlit app URL (this must be the deployed URL)
-base_url = "https://jdphi9htaatxcuurgc5rhm.streamlit.app/"  # Replace with your actual deployed URL
+base_url = "https://nph3usl7qdt525rmecwbrv.streamlit.app/"  # Replace with your actual deployed URL
 
 # Construct the URL with the quote as a query parameter
 quote_url = f"{base_url}?{urlencode({'quote': st.session_state.quote})}"
