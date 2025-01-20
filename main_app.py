@@ -40,7 +40,7 @@ quote_from_url = query_params.get("quote", None)
 
 if quote_from_url and quote_from_url[0]:  # Ensure the parameter exists and is not empty
     st.title("Positive Thought")
-    st.write(f"### {quote_from_url[0]}")
+    st.write(f"### Your Quote: {st.session_state.quote}")
 else:
     # Main page with QR code generation
     if "quote" not in st.session_state:
@@ -56,5 +56,4 @@ else:
     st.title("Spread Positivity with a QR Code")
     st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
 
-    st.write(f"### Your Quote: {st.session_state.quote}")
-    st.write("### Scan the QR code to share this positivity!")
+    
