@@ -38,8 +38,7 @@ def generate_qr_code(url, box_size=5):
 if "quote" not in st.session_state:
     st.session_state.quote = generate_random_quote()
 
-# Replace with your deployed Streamlit app URL
-base_url = "https://your-username-your-app-name.streamlit.app"  # Update with your deployed URL
+base_url = "https://nph3usl7qdt525rmecwbrv.streamlit.app/"  # Update with your deployed URL
 
 # Construct the URL with the quote as a query parameter
 quote_url = f"{base_url}/quote_page?{urlencode({'quote': st.session_state.quote})}"
