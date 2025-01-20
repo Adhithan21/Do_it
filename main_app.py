@@ -56,5 +56,4 @@ else:
 
     st.title("Spread Positivity with a QR Code")
     st.image(qr_code_image, caption="Scan me for a positive thought!", width=500)
-    st.write(f"### Today's Positive Thought: {st.session_state.quote}")
-    st.write("Scan the QR code to share positivity with others!")
+
