@@ -39,9 +39,10 @@ query_params = st.query_params  # Updated to use the new method
 quote_from_url = query_params.get("quote", None)
 
 # If the quote is passed via the URL, display it
-if quote_from_url and len(quote_from_url) > 0:  # Ensure the parameter exists and contains a value
+if quote_from_url and len(quote_from_url[0]) > 0:  # Ensure the parameter exists and contains a value
     st.title("Positive Thought")
-    st.write(f"### Your Quote: {quote_from_url[0]}")  # Display the quote passed via the URL
+    st.write(f"### Your Quote: {quote_from_url[0]}")  # Display the full quote passed via the URL
+
 else:
     # Main page for generating and sharing a random quote
     if "quote" not in st.session_state:
