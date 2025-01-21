@@ -35,7 +35,7 @@ def generate_qr_code(url, box_size=5):
     return buffer
 
 # Check for query parameters
-query_params = st.experimental_get_query_params()  # Use st.query_params for versions after April 2024
+query_params = st.query_params  # Updated to use the new method
 quote_from_url = query_params.get("quote", None)
 
 # If the quote is passed via the URL, display it
