@@ -36,16 +36,16 @@ def generate_qr_code(url, box_size=5):
 
 # Check for query parameters
 query_params = st.query_params  # Updated to use the new method
-quote_from_url = query_params.get("quote") 
+quote_from_url = query_params.get("quote")  # query_params.get() returns a list if the key exists
 
 # If the quote is passed via the URL, display it
-if quote_from_url and len(quote_from_url) > 0:  # Ensure the parameter exists and is not empty
+if quote_from_url and len(quote_from_url) > 0:  # Ensure the parameter exists and contains at least one item
+    full_quote = quote_from_url[0]  # Extract the first item (the actual quote)
     st.title("Positive Thought")
-    st.write(f"### Your Quote: {quote_from_url[0]}")  # Display the quote from the URL
+    st.write(f"### Your Quote: {full_quote}")  # Correctly display the full quote
 else:
-    # Main page with QR code generation
-    if "quote" not in st.session_state:
-        st.session_state.quote = generate_random_quote()  # Generate random quote if not set
+    st.write("### No quote provided in the URL.")  # Handle the case when no quote is passed
+
 
     # Construct the URL with the quote as a query parameter
     base_url = "https://mppsn93w3hvjxkjjlfthyt.streamlit.app/"  # Replace with your actual deployed URL
