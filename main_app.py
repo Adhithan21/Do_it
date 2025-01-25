@@ -46,7 +46,7 @@ def generate_and_display_qr_code(url, filename="qr_code.png"):
 # Main execution
 if __name__ == "__main__":
     # Define the base URL for the Streamlit app
-    base_url = "http://localhost:8501"  # Update this if deploying online
+    base_url = "https://mppsn93w3hvjxkjjlfthyt.streamlit.app/"  # Update this if deploying online
 
     # Construct the URL with a query parameter for the quote
     random_quote = generate_random_quote()
